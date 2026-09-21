@@ -529,6 +529,22 @@
       <div class="media"><img src="img/pandera-reglas.jpg" width="1600" height="1007" alt="Reglas actuales por columna: descripción, nulos, unicidad y regex" loading="lazy" /></div>
     </article>
 
+    <!-- Aplicativo Comparativo -->
+    <article class="proyecto">
+      <div class="media"><img src="img/comparativo-resumen.jpg" width="1600" height="1007" alt="Aplicativo Comparativo: resumen de la migración con registros comparados, idénticos y diferencias por campo" loading="lazy" /></div>
+      <div class="info">
+        <h3>Aplicativo Comparativo</h3>
+        <div class="rol">Verificación de migraciones · origen vs destino</div>
+        <div class="case">
+          <div class="pr"><b>Problema</b><span>Tras migrar más de 19.000 expedientes de tránsito de un sistema municipal a MongoDB había que certificar que ningún dato se perdió ni cambió. Comparar a ojo dos archivos de 11 columnas era inviable, y una comparación literal marcaba todo como distinto por simples diferencias de formato.</span></div>
+          <div class="so"><b>Solución</b><span>Herramienta en Python que mapea las columnas del destino a las del origen, <strong>empareja por número de expediente</strong> y compara campo a campo con normalización de texto. Una <strong>normalización inteligente por campo</strong> distingue diferencia de formato (puntos en el título ejecutivo, hora en las fechas, nulos vs vacío) de pérdida real de datos, y los campos que un lado no trae se reportan aparte en lugar de inflar el conteo. Front en <strong>Streamlit</strong> con métricas, diferencias por campo, tabla espejo con celdas en rojo, filtros y exportación a Excel. Comparación vectorizada con pandas: de 66 s a 1 s.</span></div>
+          <div class="re"><b>Resultado</b><span>19.087 expedientes comparados en segundos: 17.675 idénticos y 1.412 con diferencias reales localizadas al campo exacto (nombre y teléfono), con evidencia en Excel para el equipo de migración.</span></div>
+        </div>
+        <div class="tech"><span>Python</span><span>pandas</span><span>Streamlit</span><span>openpyxl</span></div>
+        <div class="links"><span class="priv">🔒 Repositorio privado (datos personales). Demostración y código disponibles en entrevista.</span></div>
+      </div>
+    </article>
+
     <!-- Creador de Manuales -->
     <article class="proyecto">
       <div class="media"><img src="img/manuales-editor.jpg" width="1600" height="1007" alt="Creador de Manuales: editor paso a paso con la captura, el título y la instrucción generada por OCR" loading="lazy" /></div>
