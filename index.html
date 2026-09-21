@@ -44,6 +44,19 @@
     a:hover { text-decoration: underline; }
     .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
 
+    /* ---- Accesibilidad ---- */
+    .skip { position: fixed; top: -100px; left: 16px; z-index: 200; padding: 10px 16px; border-radius: 8px; background: var(--accent); color: #0f172a; font-weight: 700; }
+    .skip:focus { top: 12px; outline: none; text-decoration: none; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    main:focus { outline: none; }
+    section { scroll-margin-top: 70px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn:hover, .tbtn:hover { transform: none; } }
+
+    /* ---- Volver arriba ---- */
+    .top-btn { position: fixed; right: 18px; bottom: 18px; z-index: 9; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 1.1rem; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,.3); opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .2s, transform .2s, visibility .2s; }
+    .top-btn.show { opacity: 1; visibility: visible; transform: none; }
+    .top-btn:hover { border-color: var(--accent2); }
+
     /* ---- Nav ---- */
     nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
     nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 58px; }
@@ -113,9 +126,11 @@
     .proyecto { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; padding: 32px 0; border-bottom: 1px dashed var(--border); }
     .proyecto:last-child { border-bottom: none; }
     .proyecto:nth-child(even) .media { order: 2; }
-    @media (max-width: 760px) { .proyecto { grid-template-columns: 1fr; } .proyecto:nth-child(even) .media { order: 0; } }
+    .proyecto.galeria { grid-template-columns: 1fr 1fr 1fr; padding-top: 0; }
+    @media (max-width: 760px) { .proyecto { grid-template-columns: 1fr; } .proyecto:nth-child(even) .media { order: 0; } .proyecto.galeria { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .proyecto.galeria { grid-template-columns: 1fr; } }
     .media { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--card); box-shadow: 0 10px 30px rgba(0,0,0,.25); }
-    .media img { width: 100%; display: block; cursor: zoom-in; transition: transform .25s; }
+    .media img { width: 100%; height: auto; display: block; cursor: zoom-in; transition: transform .25s; }
     .media:hover img { transform: scale(1.02); }
     .lb { position: fixed; inset: 0; z-index: 100; background: rgba(2,6,23,.92); display: none; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
     .lb.open { display: flex; }
@@ -293,7 +308,10 @@
 </head>
 <body>
 
-<figure class="lb" id="lb" aria-hidden="true"><button class="x" aria-label="Cerrar">×</button><img alt="" /><figcaption></figcaption></figure>
+<a class="skip" href="#contenido">Ir al contenido</a>
+<button class="top-btn" id="top-btn" aria-label="Volver arriba" title="Volver arriba">↑</button>
+
+<figure class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Imagen ampliada"><button class="x" aria-label="Cerrar">×</button><img alt="" /><figcaption></figcaption></figure>
 
 <nav id="nav">
   <div class="wrap">
@@ -313,6 +331,7 @@
   </div>
 </nav>
 
+<main id="contenido" tabindex="-1">
 <header>
   <div class="wrap">
     <div>
@@ -332,7 +351,7 @@
       </div>
     </div>
     <div class="hero-photo">
-      <img src="img/foto.jpg" alt="George Quintero" width="280" height="280" />
+      <img src="img/foto.jpg" width="640" height="640" alt="George Quintero" width="280" height="280" />
       <span class="badge">● Disponible</span>
     </div>
   </div>
@@ -358,7 +377,7 @@
 
     <!-- MobiFlow -->
     <article class="proyecto">
-      <div class="media"><img src="img/mobiflow-casos.jpg" alt="MobiFlow: casos de prueba grabados con sus pasos y localizadores" loading="lazy" /></div>
+      <div class="media"><img src="img/mobiflow-casos.jpg" width="1394" height="710" alt="MobiFlow: casos de prueba grabados con sus pasos y localizadores" loading="lazy" /></div>
       <div class="info">
         <h3>MobiFlow</h3>
         <div class="rol">Grabador y reproductor de pruebas móviles</div>
@@ -374,12 +393,12 @@
 
     <!-- Galería MobiFlow -->
     <article class="proyecto" style="grid-template-columns: 1fr; padding-top: 0;">
-      <div class="media"><img src="img/mobiflow-codigo.jpg" alt="Código TypeScript + WebdriverIO generado por MobiFlow a partir de los pasos grabados" loading="lazy" /></div>
+      <div class="media"><img src="img/mobiflow-codigo.jpg" width="1394" height="710" alt="Código TypeScript + WebdriverIO generado por MobiFlow a partir de los pasos grabados" loading="lazy" /></div>
     </article>
 
     <!-- LOGSPRO -->
     <article class="proyecto">
-      <div class="media"><img src="img/logspro-resumen.jpg" alt="LOGSPRO: resumen de un log de banca móvil con totales, errores y trazas sin respuesta" loading="lazy" /></div>
+      <div class="media"><img src="img/logspro-resumen.jpg" width="1600" height="906" alt="LOGSPRO: resumen de un log de banca móvil con totales, errores y trazas sin respuesta" loading="lazy" /></div>
       <div class="info">
         <h3>LOGSPRO · Log Analyzer QA</h3>
         <div class="rol">Análisis de logs de banca móvil</div>
@@ -395,12 +414,12 @@
 
     <!-- Galería LOGSPRO -->
     <article class="proyecto" style="grid-template-columns: 1fr; padding-top: 0;">
-      <div class="media"><img src="img/logspro-trazas.jpg" alt="Vista de trazas: INPUT y OUTPUT agrupados por ID, con errores y trazas sin respuesta resaltadas" loading="lazy" /></div>
+      <div class="media"><img src="img/logspro-trazas.jpg" width="1600" height="906" alt="Vista de trazas: INPUT y OUTPUT agrupados por ID, con errores y trazas sin respuesta resaltadas" loading="lazy" /></div>
     </article>
 
     <!-- Lightshot Desktop -->
     <article class="proyecto">
-      <div class="media"><img src="img/lightshot-anotaciones.jpg" alt="Lightshot Desktop anotando una captura: rectángulo, flecha, numeración y resaltado" loading="lazy" /></div>
+      <div class="media"><img src="img/lightshot-anotaciones.jpg" width="1280" height="800" alt="Lightshot Desktop anotando una captura: rectángulo, flecha, numeración y resaltado" loading="lazy" /></div>
       <div class="info">
         <h3>Lightshot Desktop</h3>
         <div class="rol">Captura, anotación y grabación de pantalla para evidencias QA</div>
@@ -416,7 +435,7 @@
 
     <!-- Contabilidad IFTAE -->
     <article class="proyecto">
-      <div class="media"><img src="img/iftae-dashboard.png" alt="Dashboard del sistema de contabilidad IFTAE" loading="lazy" /></div>
+      <div class="media"><img src="img/iftae-dashboard.png" width="1264" height="1178" alt="Dashboard del sistema de contabilidad IFTAE" loading="lazy" /></div>
       <div class="info">
         <h3>Contabilidad IFTAE</h3>
         <div class="rol">Sistema contable de escritorio para una institución educativa</div>
@@ -431,15 +450,15 @@
     </article>
 
     <!-- Galería IFTAE -->
-    <article class="proyecto" style="grid-template-columns: 1fr 1fr 1fr; padding-top: 0;">
-      <div class="media"><img src="img/iftae-pagos.png" alt="Pagos con recibo anulado" loading="lazy" /></div>
-      <div class="media"><img src="img/iftae-graficas.png" alt="Gráficas de ingresos y egresos" loading="lazy" /></div>
-      <div class="media"><img src="img/iftae-recibo.png" alt="Recibo térmico" loading="lazy" /></div>
+    <article class="proyecto galeria">
+      <div class="media"><img src="img/iftae-pagos.png" width="1028" height="681" alt="Pagos con recibo anulado" loading="lazy" /></div>
+      <div class="media"><img src="img/iftae-graficas.png" width="1012" height="1016" alt="Gráficas de ingresos y egresos" loading="lazy" /></div>
+      <div class="media"><img src="img/iftae-recibo.png" width="448" height="674" alt="Recibo térmico" loading="lazy" /></div>
     </article>
 
     <!-- Compresor PDF -->
     <article class="proyecto">
-      <div class="media"><img src="img/compresor-pdf.jpg" alt="Compresor de PDF: perfil de compresión, DPI y modo de color" loading="lazy" /></div>
+      <div class="media"><img src="img/compresor-pdf.jpg" width="1120" height="1144" alt="Compresor de PDF: perfil de compresión, DPI y modo de color" loading="lazy" /></div>
       <div class="info">
         <h3>Compresor de PDF</h3>
         <div class="rol">Herramienta de escritorio</div>
@@ -455,7 +474,7 @@
 
     <!-- DS-160 -->
     <article class="proyecto">
-      <div class="media"><img src="img/ds160-app.jpg" alt="Automatización DS-160: Excel del cliente, acciones y progreso por secciones del formulario" loading="lazy" /></div>
+      <div class="media"><img src="img/ds160-app.jpg" width="1600" height="925" alt="Automatización DS-160: Excel del cliente, acciones y progreso por secciones del formulario" loading="lazy" /></div>
       <div class="info">
         <h3>Automatización asistida del formulario DS-160</h3>
         <div class="rol">Automatización de procesos con Python</div>
@@ -471,7 +490,7 @@
 
     <!-- Validación de datos -->
     <article class="proyecto">
-      <div class="media"><img src="img/pandera-reporte.jpg" alt="Reporte de validación de datos: score de calidad, registros válidos y con error" loading="lazy" /></div>
+      <div class="media"><img src="img/pandera-reporte.jpg" width="1600" height="1007" alt="Reporte de validación de datos: score de calidad, registros válidos y con error" loading="lazy" /></div>
       <div class="info">
         <h3>Validación de datos para migraciones</h3>
         <div class="rol">Calidad de datos · Python</div>
@@ -487,13 +506,13 @@
 
     <!-- Galería Validador -->
     <article class="proyecto" style="grid-template-columns: 1fr 1fr; padding-top: 0;">
-      <div class="media"><img src="img/pandera-editor.jpg" alt="Editor de reglas: archivo activo y vista previa del CSV" loading="lazy" /></div>
-      <div class="media"><img src="img/pandera-reglas.jpg" alt="Reglas actuales por columna: descripción, nulos, unicidad y regex" loading="lazy" /></div>
+      <div class="media"><img src="img/pandera-editor.jpg" width="1600" height="1007" alt="Editor de reglas: archivo activo y vista previa del CSV" loading="lazy" /></div>
+      <div class="media"><img src="img/pandera-reglas.jpg" width="1600" height="1007" alt="Reglas actuales por columna: descripción, nulos, unicidad y regex" loading="lazy" /></div>
     </article>
 
     <!-- Creador de Manuales -->
     <article class="proyecto">
-      <div class="media"><img src="img/manuales-editor.jpg" alt="Creador de Manuales: editor paso a paso con la captura, el título y la instrucción generada por OCR" loading="lazy" /></div>
+      <div class="media"><img src="img/manuales-editor.jpg" width="1600" height="1007" alt="Creador de Manuales: editor paso a paso con la captura, el título y la instrucción generada por OCR" loading="lazy" /></div>
       <div class="info">
         <h3>Creador de Manuales</h3>
         <div class="rol">De guion de pruebas Excel a manual de usuario en PDF y Word</div>
@@ -509,7 +528,7 @@
 
     <!-- Galería Manuales -->
     <article class="proyecto" style="grid-template-columns: 1fr; padding-top: 0;">
-      <div class="media"><img src="img/manuales-pdf.jpg" alt="Manual generado: portada con control de versiones y páginas con pasos, capturas numeradas y resultado esperado" loading="lazy" /></div>
+      <div class="media"><img src="img/manuales-pdf.jpg" width="1600" height="677" alt="Manual generado: portada con control de versiones y páginas con pasos, capturas numeradas y resultado esperado" loading="lazy" /></div>
     </article>
 
   </div>
@@ -925,6 +944,28 @@
     vm.addEventListener('click', function () { var all = courses.classList.toggle('all'); vm.textContent = all ? 'Ver menos ▴' : 'Ver todos los cursos (14) ▾'; if (!all) document.getElementById('formacion').scrollIntoView({ behavior: 'smooth' }); });
     // ---- Confirmación del formulario
     if (/[?&]enviado=1/.test(location.search)) { var ok = document.getElementById('form-ok'); if (ok) ok.classList.add('show'); history.replaceState(null, '', location.pathname + '#contacto'); }
+    // ---- Volver arriba
+    var top = document.getElementById('top-btn');
+    function onScroll() { top.classList.toggle('show', window.scrollY > 400); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); document.querySelector('.logo').focus({ preventScroll: true }); });
+    // ---- Lightbox accesible por teclado: las capturas se enfocan con Tab y abren con Enter/Espacio;
+    //      flechas para pasar de imagen y el foco vuelve a la captura al cerrar
+    var imgs = Array.prototype.slice.call(document.querySelectorAll('.media img')), cur = -1;
+    imgs.forEach(function (img, i) {
+      img.setAttribute('tabindex', '0'); img.setAttribute('role', 'button');
+      img.addEventListener('click', function () { cur = i; lb.querySelector('.x').focus(); });
+      img.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); img.click(); } });
+    });
+    function goTo(i) { cur = (i + imgs.length) % imgs.length; lbImg.src = imgs[cur].src; lbImg.alt = imgs[cur].alt; lbCap.textContent = imgs[cur].alt; }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && cur >= 0) { imgs[cur].focus(); cur = -1; return; }
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'ArrowRight') goTo(cur + 1);
+      if (e.key === 'ArrowLeft') goTo(cur - 1);
+    });
+    lb.addEventListener('click', function () { if (cur >= 0) imgs[cur].focus(); });
   })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -946,6 +987,8 @@
     }
   })();
 </script>
+
+</main>
 
 <footer>
   <div class="wrap">George Quintero · QA Engineer · Portafolio hecho a mano, sin frameworks · 2026</div>
