@@ -561,6 +561,22 @@
       </div>
     </article>
 
+    <!-- Visor de Parquet -->
+    <article class="proyecto">
+      <div class="media"><img src="img/parquet-visor.jpg" width="1600" height="933" alt="Visor de Parquet: archivo de vehículos abierto en una grilla tipo Excel con botones para exportar a CSV y Excel" loading="lazy" /></div>
+      <div class="info">
+        <h3>Visor de Parquet</h3>
+        <div class="rol">Herramienta de escritorio · Parquet a CSV y Excel</div>
+        <div class="case">
+          <div class="pr"><b>Problema</b><span>Las salidas de una migración de expedientes de tránsito llegaban en formato Parquet. El equipo funcional y los analistas no podían abrirlas: Excel no lo lee y pedir cada archivo convertido al equipo de datos frenaba la validación.</span></div>
+          <div class="so"><b>Solución</b><span>Aplicación de escritorio en Python que abre cualquier Parquet con <strong>PyArrow</strong>, lo procesa con <strong>Polars</strong> y lo muestra en una grilla tipo hoja de cálculo (navegar, seleccionar, copiar). Exporta a <strong>CSV listo para Excel en español</strong> (separador <code>;</code>, UTF-8 con BOM, campos entrecomillados) y a <strong>XLSX</strong> con formato compacto para columnas largas. Empaquetada como ejecutable con PyInstaller para que no haga falta instalar Python.</span></div>
+          <div class="re"><b>Resultado</b><span>Cualquier persona del equipo abre y revisa un Parquet de miles de filas en segundos y lo comparte en Excel, sin depender del equipo de datos.</span></div>
+        </div>
+        <div class="tech"><span>Python</span><span>Polars</span><span>PyArrow</span><span>pandas</span><span>ttkbootstrap</span><span>PyInstaller</span></div>
+        <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
+      </div>
+    </article>
+
     <!-- Creador de Manuales -->
     <article class="proyecto">
       <div class="media"><img src="img/manuales-editor.jpg" width="1600" height="1007" alt="Creador de Manuales: editor paso a paso con la captura, el título y la instrucción generada por OCR" loading="lazy" /></div>
