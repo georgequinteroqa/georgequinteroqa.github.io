@@ -415,6 +415,22 @@
       <div class="media"><img src="img/mobiflow-codigo.jpg" width="1394" height="710" alt="Código TypeScript + WebdriverIO generado por MobiFlow a partir de los pasos grabados" loading="lazy" /></div>
     </article>
 
+    <!-- OBDSCAN -->
+    <article class="proyecto">
+      <div class="media"><img src="img/obdscan-pantallas.jpg" width="1600" height="1007" alt="OBDSCAN: pantalla de conexión Wi-Fi o Bluetooth, lista de adaptadores emparejados, tablero con datos en vivo y códigos de falla con ficha de diagnóstico" loading="lazy" /></div>
+      <div class="info">
+        <h3>OBDSCAN</h3>
+        <div class="rol">Escáner automotriz OBD-II para Android · Wi-Fi y Bluetooth</div>
+        <div class="case">
+          <div class="pr"><b>Problema</b><span>Un adaptador ELM327 cuesta poco, pero las apps que lo acompañan están en inglés, muestran el código de falla sin explicar qué significa ni qué revisar, y muchas solo funcionan con un tipo de adaptador.</span></div>
+          <div class="so"><b>Solución</b><span>App Android (Capacitor) que habla el protocolo ELM327 de verdad: handshake, detección de protocolo (CAN, ISO 9141, KWP, J1850), lectura de PIDs en vivo, <strong>códigos almacenados, pendientes y permanentes</strong> con ficha en español (síntomas, causas probables, qué revisar), cuadro congelado, monitores de emisiones, VIN decodificado, historial y <strong>borrado con verificación posterior</strong>. Se conecta por <strong>Wi-Fi</strong> (socket TCP nativo, atando el proceso a la red del adaptador) o por <strong>Bluetooth clásico SPP</strong> mediante un plugin nativo propio. Incluye un adaptador simulado y un puente para probar toda la app en la PC sin carro.</span></div>
+          <div class="re"><b>Resultado</b><span>Diagnóstico completo en español desde el celular, con 78 pruebas automáticas que cubren desde la decodificación de tramas CAN multi-frame hasta el ciclo completo de conexión, lectura y borrado por ambos enlaces.</span></div>
+        </div>
+        <div class="tech"><span>JavaScript</span><span>Capacitor</span><span>Android</span><span>Java</span><span>Node.js</span><span>ELM327 / OBD-II</span></div>
+        <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
+      </div>
+    </article>
+
     <!-- LOGSPRO -->
     <article class="proyecto">
       <div class="media"><img src="img/logspro-resumen.jpg" width="1600" height="906" alt="LOGSPRO: resumen de un log de banca móvil con totales, errores y trazas sin respuesta" loading="lazy" /></div>
