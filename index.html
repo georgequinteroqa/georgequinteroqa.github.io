@@ -545,6 +545,22 @@
       <div class="media"><img src="img/pandera-reglas.jpg" width="1600" height="1007" alt="Reglas actuales por columna: descripción, nulos, unicidad y regex" loading="lazy" /></div>
     </article>
 
+    <!-- Q-EDA -->
+    <article class="proyecto">
+      <div class="media"><img src="img/qeda-calidad.jpg" width="1600" height="1007" alt="Informe Q-EDA: porcentaje de calidad por dataset y score por dimensión (validez, completitud, unicidad, redundancia, precisión)" loading="lazy" /></div>
+      <div class="info">
+        <h3>Q-EDA · Calidad de datos y EDA automatizado</h3>
+        <div class="rol">Framework configurable · Python</div>
+        <div class="case">
+          <div class="pr"><b>Problema</b><span>Cada dataset nuevo que llegaba para migrar (expedientes, deudas, incapacidades) exigía repetir a mano el mismo análisis: revisar tipos, nulos, duplicados, rangos y reglas de negocio, y armar un informe. El trabajo no era reutilizable y cada analista lo hacía distinto.</span></div>
+          <div class="so"><b>Solución</b><span>Framework <strong>dirigido por configuración</strong>: un JSON describe los datasets, el esquema esperado y las reglas, y el motor hace el resto. Carga Excel/CSV, estandariza nombres de columna, valida esquema, ejecuta reglas de calidad por dimensión (<strong>validez, completitud, unicidad, redundancia, consistencia, precisión</strong>), corre el EDA, genera gráficos y produce un <strong>informe HTML</strong> con score por dataset y hallazgos fila a fila. Logging estructurado por etapa con <code>structlog</code>, Dockerfile y suite de pruebas.</span></div>
+          <div class="re"><b>Resultado</b><span>Un informe de calidad reproducible en segundos por cada entrega de datos: 47 pruebas automáticas, ejecución de menos de 10 s sobre las matrices de ejemplo y reglas que se ajustan editando JSON, sin tocar código.</span></div>
+        </div>
+        <div class="tech"><span>Python</span><span>pandas</span><span>seaborn</span><span>structlog</span><span>pytest</span><span>Docker</span></div>
+        <div class="links"><span class="priv">🔒 Desarrollado en Jikkosoft. Demostración disponible en entrevista.</span></div>
+      </div>
+    </article>
+
     <!-- Aplicativo Comparativo -->
     <article class="proyecto">
       <div class="media"><img src="img/comparativo-resumen.jpg" width="1600" height="1007" alt="Aplicativo Comparativo: resumen de la migración con registros comparados, idénticos y diferencias por campo" loading="lazy" /></div>
