@@ -137,9 +137,9 @@
     /* ---- Proyectos ---- */
     .proyecto { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; padding: 32px 0; border-bottom: 1px dashed var(--border); }
     .proyecto:last-child { border-bottom: none; }
-    .proyecto:nth-child(even) .media { order: 2; }
+
     .proyecto.galeria { grid-template-columns: 1fr 1fr 1fr; padding-top: 0; }
-    @media (max-width: 760px) { .proyecto { grid-template-columns: 1fr; } .proyecto:nth-child(even) .media { order: 0; } .proyecto.galeria { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 760px) { .proyecto { grid-template-columns: 1fr; } .proyecto.galeria { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .proyecto.galeria { grid-template-columns: 1fr; } }
     .media { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--card); box-shadow: 0 10px 30px rgba(0,0,0,.25); }
     .media img { width: 100%; height: auto; display: block; cursor: zoom-in; transition: transform .25s; }
@@ -171,46 +171,28 @@
     .links { display: flex; gap: 14px; flex-wrap: wrap; font-weight: 700; font-size: .92rem; }
     .links .priv { color: var(--muted); font-weight: 500; }
 
-    /* ---- Proyectos: rejilla y ficha ---- */
-    .filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
-    .filtros button { font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; padding: 7px 15px; border-radius: 30px; color: var(--muted); background: var(--card); border: 1.5px solid var(--border); transition: color .15s, border-color .15s, background .15s; }
-    .filtros button b { font-weight: 800; opacity: .55; margin-left: 4px; }
-    .filtros button:hover { color: var(--text); border-color: var(--accent2); }
-    .filtros button[aria-pressed="true"] { color: #0f172a; background: var(--accent); border-color: var(--accent); }
-    .filtros button[aria-pressed="true"] b { opacity: .7; }
+    /* ---- Índice de proyectos ---- */
+    .indice { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 8px; padding: 22px 24px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
+    .indice .col b { display: block; font-size: .74rem; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .indice .col b i { font-style: normal; color: var(--muted); font-weight: 700; }
+    .indice ul { list-style: none; display: grid; gap: 5px; }
+    .indice a { color: var(--text); font-size: .92rem; font-weight: 600; }
+    .indice a:hover { color: var(--accent2); text-decoration: none; }
+    @media (max-width: 720px) { .indice { grid-template-columns: 1fr; gap: 20px; } }
 
-    .rejilla { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
-    @media (max-width: 880px) { .rejilla { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 560px) { .rejilla { grid-template-columns: 1fr; } }
-    .tarjeta[hidden] { display: none; }
-    .tapa { font: inherit; color: inherit; text-align: left; cursor: pointer; width: 100%; height: 100%; padding: 0; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform .15s, border-color .15s, box-shadow .15s; }
-    .tapa:hover { transform: translateY(-3px); border-color: var(--accent2); box-shadow: 0 14px 34px rgba(0,0,0,.28); }
-    /* La portada se recorta a una altura fija: con capturas de proporciones
-       distintas, dejarlas a su aire descuadraba toda la rejilla. */
-    .tapa .thumb { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--bg2); border-bottom: 1px solid var(--border); }
-    .tapa .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform .3s; }
-    .tapa:hover .thumb img { transform: scale(1.04); }
-    .tapa .txt { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px; flex: 1; }
-    .tapa .t { font-size: 1.05rem; font-weight: 800; line-height: 1.3; }
-    .tapa .r { color: var(--accent); font-size: .74rem; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; }
-    .tapa .gan { color: var(--muted); font-size: .88rem; line-height: 1.5; }
-    .tapa .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; padding-top: 12px; }
-    .tapa .chips span { font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 20px; background: color-mix(in srgb, var(--accent2) 14%, transparent); color: var(--accent2); }
-    .tapa .chips span.mas { background: none; color: var(--muted); }
-    .tapa .ver { color: var(--accent2); font-size: .84rem; font-weight: 700; padding-top: 10px; }
-    .tapa .ver i { display: inline-block; transition: transform .15s; }
-    .tapa:hover .ver i { transform: translateX(3px); }
-
-    .ficha { position: fixed; inset: 0; z-index: 90; background: rgba(2,6,23,.86); padding: 34px 20px; overflow-y: auto; display: none; }
-    .ficha.open { display: block; }
-    .ficha-caja { position: relative; max-width: 860px; margin: 0 auto; padding: 30px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 30px 80px rgba(0,0,0,.55); }
-    .ficha .x { position: absolute; top: 10px; right: 14px; font-size: 2rem; line-height: 1; background: none; border: none; color: var(--muted); cursor: pointer; }
-    .ficha .x:hover { color: var(--text); }
-    .ficha h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; padding-right: 36px; }
-    .ficha .rol { color: var(--accent); font-weight: 700; font-size: .8rem; letter-spacing: .6px; text-transform: uppercase; margin-bottom: 20px; }
-    .ficha .capturas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 22px; }
-    .ficha .capturas .media:only-child { grid-column: 1 / -1; }
-    @media (max-width: 560px) { .ficha { padding: 16px 12px; } .ficha-caja { padding: 22px 18px; } .ficha .capturas { grid-template-columns: 1fr; } }
+    /* ---- Grupos ---- */
+    .grupo { padding-top: 26px; }
+    .grupo-t { font-size: 1.15rem; font-weight: 800; padding-bottom: 10px; border-bottom: 2px solid var(--accent); display: inline-block; margin-top: 22px; }
+    .grupo-t span { display: block; font-size: .88rem; font-weight: 500; color: var(--muted); margin-top: 4px; }
+    .proyecto { scroll-margin-top: 80px; }
+    /* La alternancia va por clase y no por nth-child: con los grupos de por
+       medio, la paridad dependía de cuántos elementos hubiera delante. */
+    .proyecto.der .medios { order: 2; }
+    .medios { display: grid; gap: 10px; }
+    /* align-self para que cada captura secundaria mida lo que mide: la
+       rejilla igualaba las filas y las mas bajas quedaban con un hueco. */
+    .extras { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 10px; align-items: start; }
+    @media (max-width: 760px) { .proyecto.der .medios { order: 0; } }
 
     /* ---- Habilidades ---- */
     .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
@@ -433,385 +415,235 @@
 <section id="proyectos">
   <div class="wrap">
     <h2>Proyectos</h2>
-    <p class="sub">Trece proyectos propios. Pulsa cualquiera para ver el caso
-      completo: qué problema había, cómo lo resolví y en qué quedó. El código
+    <p class="sub">Trece proyectos propios, agrupados por lo que resuelven. De
+      cada uno: qué problema había, cómo lo resolví y en qué quedó. El código
       está en repositorios privados; se muestra en entrevista.</p>
 
-    <div class="filtros" role="group" aria-label="Filtrar proyectos por tipo">
-      <button type="button" data-filtro="todos" aria-pressed="true">Todos <b>13</b></button>
-      <button type="button" data-filtro="pruebas" aria-pressed="false">Pruebas y automatización <b>3</b></button>
-      <button type="button" data-filtro="datos" aria-pressed="false">Datos y migraciones <b>4</b></button>
-      <button type="button" data-filtro="apps" aria-pressed="false">Aplicaciones <b>6</b></button>
+    <div class="indice" role="navigation" aria-label="Índice de proyectos">
+        <div class="col">
+          <b>Pruebas y automatización <i>3</i></b>
+          <ul><li><a href="#p-mobiflow">MobiFlow</a></li><li><a href="#p-logspro">LOGSPRO · Log Analyzer QA</a></li><li><a href="#p-ds-160">Automatización asistida del formulario DS-160</a></li></ul>
+        </div>
+        <div class="col">
+          <b>Datos y migraciones <i>4</i></b>
+          <ul><li><a href="#p-validacion-de-datos">Validación de datos para migraciones</a></li><li><a href="#p-q-eda">Q-EDA · Calidad de datos y EDA automatizado</a></li><li><a href="#p-aplicativo-comparativo">Aplicativo Comparativo</a></li><li><a href="#p-visor-de-parquet">Visor de Parquet</a></li></ul>
+        </div>
+        <div class="col">
+          <b>Aplicaciones <i>6</i></b>
+          <ul><li><a href="#p-obdscan">OBDSCAN</a></li><li><a href="#p-lightshot-desktop">Lightshot Desktop</a></li><li><a href="#p-contabilidad-iftae">Contabilidad IFTAE</a></li><li><a href="#p-compresor-pdf">Compresor de PDF</a></li><li><a href="#p-creador-de-manuales">Creador de Manuales</a></li><li><a href="#p-sn4ke-deluxe">SN4KE Deluxe</a></li></ul>
+        </div>
     </div>
 
-    <div class="rejilla" id="rejilla">
-      <article class="tarjeta" data-grupo="pruebas">
-        <button class="tapa" type="button" data-ficha="f-mobiflow" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/mobiflow-casos.jpg" width="1394" height="710" alt="MobiFlow: casos de prueba grabados con sus pasos y localizadores" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">MobiFlow</span>
-            <span class="r">Grabador y reproductor de pruebas móviles</span>
-            <span class="gan">Casos de prueba móviles sin escribir código, con localizadores que sobreviven a cambios de diseño y un .spec.ts listo para integrar en CI.</span>
-            <span class="chips"><span>Electron</span><span>TypeScript</span><span>Appium</span><span class="mas">+2</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="apps">
-        <button class="tapa" type="button" data-ficha="f-obdscan" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/obdscan-pantallas.jpg" width="1600" height="1007" alt="OBDSCAN: pantalla de conexión Wi-Fi o Bluetooth, lista de adaptadores emparejados, tablero con datos en vivo y códigos de falla con ficha de diagnóstico" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">OBDSCAN</span>
-            <span class="r">Escáner automotriz OBD-II para Android · Wi-Fi y Bluetooth</span>
-            <span class="gan">Diagnóstico completo en español desde el celular, con 78 pruebas automáticas que cubren desde la decodificación de tramas CAN multi-frame hasta el…</span>
-            <span class="chips"><span>JavaScript</span><span>Capacitor</span><span>Android</span><span class="mas">+3</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="pruebas">
-        <button class="tapa" type="button" data-ficha="f-logspro" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/logspro-resumen.jpg" width="1600" height="906" alt="LOGSPRO: resumen de un log de banca móvil con totales, errores y trazas sin respuesta" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">LOGSPRO · Log Analyzer QA</span>
-            <span class="r">Análisis de logs de banca móvil</span>
-            <span class="gan">De minutos buscando en texto plano a segundos: el último error, los métodos con más fallos y las trazas huérfanas aparecen de inmediato, y el reporte…</span>
-            <span class="chips"><span>Electron</span><span>JavaScript</span><span>Regex</span><span class="mas">+2</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="apps">
-        <button class="tapa" type="button" data-ficha="f-lightshot-desktop" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/lightshot-anotaciones.jpg" width="1280" height="800" alt="Lightshot Desktop anotando una captura: rectángulo, flecha, numeración y resaltado" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">Lightshot Desktop</span>
-            <span class="r">Captura, anotación y grabación de pantalla para evidencias QA</span>
-            <span class="gan">Evidencia lista para pegar en Jira o en un ticket en segundos, con los datos sensibles ocultos antes de compartir.</span>
-            <span class="chips"><span>Electron</span><span>JavaScript</span><span>Canvas API</span><span class="mas">+2</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="apps">
-        <button class="tapa" type="button" data-ficha="f-contabilidad-iftae" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/iftae-dashboard.png" width="1264" height="1178" alt="Dashboard del sistema de contabilidad IFTAE" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">Contabilidad IFTAE</span>
-            <span class="r">Sistema contable de escritorio para una institución educativa</span>
-            <span class="gan">En uso real en el Instituto de Formación Técnica Albert Einstein: sin dependencia de internet, historial auditable y recuperación ante fallos con un clic.</span>
-            <span class="chips"><span>Electron</span><span>JavaScript</span><span>SQLite</span><span class="mas">+2</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="apps">
-        <button class="tapa" type="button" data-ficha="f-compresor-pdf" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/compresor-pdf.jpg" width="1120" height="1144" alt="Compresor de PDF: perfil de compresión, DPI y modo de color" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">Compresor de PDF</span>
-            <span class="r">Herramienta de escritorio</span>
-            <span class="gan">PDFs reducidos en un clic sin que los documentos salgan del computador.</span>
-            <span class="chips"><span>Electron</span><span>Node.js</span><span>Ghostscript</span><span class="mas">+1</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="pruebas">
-        <button class="tapa" type="button" data-ficha="f-ds-160" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/ds160-app.jpg" width="1600" height="925" alt="Automatización DS-160: Excel del cliente, acciones y progreso por secciones del formulario" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">Automatización asistida del formulario DS-160</span>
-            <span class="r">Automatización de procesos con Python</span>
-            <span class="gan">De más de una hora a minutos de revisión por solicitante, con la persona en control de los pasos sensibles.</span>
-            <span class="chips"><span>Python</span><span>Selenium</span><span>openpyxl</span><span class="mas">+1</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="datos">
-        <button class="tapa" type="button" data-ficha="f-validacion-de-datos" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/pandera-reporte.jpg" width="1600" height="1007" alt="Reporte de validación de datos: score de calidad, registros válidos y con error" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">Validación de datos para migraciones</span>
-            <span class="r">Calidad de datos · Python</span>
-            <span class="gan">Cada hallazgo con su columna, valor y regla; reglas editables sin tocar código.</span>
-            <span class="chips"><span>Python</span><span>Pandera</span><span>pandas</span><span class="mas">+2</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="datos">
-        <button class="tapa" type="button" data-ficha="f-q-eda" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/qeda-calidad.jpg" width="1600" height="1007" alt="Informe Q-EDA: porcentaje de calidad por dataset y score por dimensión (validez, completitud, unicidad, redundancia, precisión)" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">Q-EDA · Calidad de datos y EDA automatizado</span>
-            <span class="r">Framework configurable · Python</span>
-            <span class="gan">Un informe de calidad reproducible en segundos por cada entrega de datos: 47 pruebas automáticas, ejecución de menos de 10 s sobre las matrices de…</span>
-            <span class="chips"><span>Python</span><span>pandas</span><span>seaborn</span><span class="mas">+3</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="datos">
-        <button class="tapa" type="button" data-ficha="f-aplicativo-comparativo" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/comparativo-resumen.jpg" width="1600" height="1007" alt="Aplicativo Comparativo: resumen de la migración con registros comparados, idénticos y diferencias por campo" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">Aplicativo Comparativo</span>
-            <span class="r">Verificación de migraciones · origen vs destino</span>
-            <span class="gan">19.087 expedientes comparados en segundos: 17.675 idénticos y 1.412 con diferencias reales localizadas al campo exacto (nombre y teléfono), con…</span>
-            <span class="chips"><span>Python</span><span>pandas</span><span>Streamlit</span><span class="mas">+1</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="datos">
-        <button class="tapa" type="button" data-ficha="f-visor-de-parquet" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/parquet-visor.jpg" width="1600" height="933" alt="Visor de Parquet: archivo de vehículos abierto en una grilla tipo Excel con botones para exportar a CSV y Excel" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">Visor de Parquet</span>
-            <span class="r">Herramienta de escritorio · Parquet a CSV y Excel</span>
-            <span class="gan">Cualquier persona del equipo abre y revisa un Parquet de miles de filas en segundos y lo comparte en Excel, sin depender del equipo de datos.</span>
-            <span class="chips"><span>Python</span><span>Polars</span><span>PyArrow</span><span class="mas">+3</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="apps">
-        <button class="tapa" type="button" data-ficha="f-creador-de-manuales" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/manuales-editor.jpg" width="1600" height="1007" alt="Creador de Manuales: editor paso a paso con la captura, el título y la instrucción generada por OCR" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">Creador de Manuales</span>
-            <span class="r">De guion de pruebas Excel a manual de usuario en PDF y Word</span>
-            <span class="gan">El manual sale en minutos a partir del guion que QA ya tiene, sin volver a redactar ni recortar capturas, y todo se procesa en el equipo: ninguna…</span>
-            <span class="chips"><span>Python</span><span>Flask</span><span>ReportLab</span><span class="mas">+4</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-      <article class="tarjeta" data-grupo="apps">
-        <button class="tapa" type="button" data-ficha="f-sn4ke-deluxe" aria-haspopup="dialog">
-          <span class="thumb"><img class="port" src="img/snake-juego.jpg" width="1600" height="1007" alt="SN4KE Deluxe: tablero neón con la serpiente, obstáculos, marcador, nivel, vidas y selector de skins" loading="lazy" /></span>
-          <span class="txt">
-            <span class="t">SN4KE Deluxe</span>
-            <span class="r">Juego web · React + Canvas</span>
-            <span class="gan">Un juego fluido a 60 fps con la lógica separada de la presentación: el mismo motor sirve para escritorio y celular.</span>
-            <span class="chips"><span>React</span><span>Vite</span><span>Canvas API</span><span class="mas">+1</span></span>
-            <span class="ver">Ver el caso <i aria-hidden="true">→</i></span>
-          </span>
-        </button>
-      </article>
-    </div>
-  </div>
-
-    <div class="ficha" id="f-mobiflow" role="dialog" aria-modal="true"
-         aria-label="MobiFlow" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>MobiFlow</h3>
-        <div class="rol">Grabador y reproductor de pruebas móviles</div>
-        <div class="capturas"><div class="media"><img src="img/mobiflow-casos.jpg" width="1394" height="710" alt="MobiFlow: casos de prueba grabados con sus pasos y localizadores" loading="lazy" /></div><div class="media"><img src="img/mobiflow-codigo.jpg" width="1394" height="710" alt="Código TypeScript + WebdriverIO generado por MobiFlow a partir de los pasos grabados" loading="lazy" /></div></div>
-        <div class="case">
+    <div class="grupo" id="g-pruebas">
+      <h3 class="grupo-t">Pruebas y automatización <span>Herramientas para diseñar, ejecutar y revisar pruebas.</span></h3>
+      <article class="proyecto izq" id="p-mobiflow">
+        <div class="medios"><div class="media"><img src="img/mobiflow-casos.jpg" width="1394" height="710" alt="MobiFlow: casos de prueba grabados con sus pasos y localizadores" loading="lazy" /></div>
+          <div class="extras"><div class="media"><img src="img/mobiflow-codigo.jpg" width="1394" height="710" alt="Código TypeScript + WebdriverIO generado por MobiFlow a partir de los pasos grabados" loading="lazy" /></div></div>
+        </div>
+        <div class="info">
+          <h3>MobiFlow</h3>
+          <div class="rol">Grabador y reproductor de pruebas móviles</div>
+          <div class="case">
           <div class="pr"><b>Problema</b><span>Diseñar casos de prueba para apps móviles era lento y frágil: capturar los toques del teléfono solo entrega coordenadas que se rompen al cambiar el layout o la resolución, y automatizar exigía escribir código Appium a mano.</span></div>
           <div class="so"><b>Solución</b><span>Aplicación de escritorio con <strong>espejo del dispositivo en vivo</strong>: se graba interactuando sobre el espejo y cada acción se convierte en un paso con <strong>localizador estable</strong> (accessibility id, resource-id, UiAutomator) y alternativas ordenadas por confianza. Reproducción con resaltado paso a paso, inspector de elementos, evidencias PNG, informe HTML y exportación a <strong>TypeScript + WebdriverIO</strong>. Motor Appium 3, preparado para iOS (XCUITest).</span></div>
           <div class="re"><b>Resultado</b><span>Casos de prueba móviles sin escribir código, con localizadores que sobreviven a cambios de diseño y un <code>.spec.ts</code> listo para integrar en CI. Menos tiempo de diseño manual en entornos móviles.</span></div>
         </div>
         <div class="tech"><span>Electron</span><span>TypeScript</span><span>Appium</span><span>WebdriverIO</span><span>Android</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
-      </div>
-    </div>
-    <div class="ficha" id="f-obdscan" role="dialog" aria-modal="true"
-         aria-label="OBDSCAN" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>OBDSCAN</h3>
-        <div class="rol">Escáner automotriz OBD-II para Android · Wi-Fi y Bluetooth</div>
-        <div class="capturas"><div class="media"><img src="img/obdscan-pantallas.jpg" width="1600" height="1007" alt="OBDSCAN: pantalla de conexión Wi-Fi o Bluetooth, lista de adaptadores emparejados, tablero con datos en vivo y códigos de falla con ficha de diagnóstico" loading="lazy" /></div></div>
-        <div class="case">
-          <div class="pr"><b>Problema</b><span>Un adaptador ELM327 cuesta poco, pero las apps que lo acompañan están en inglés, muestran el código de falla sin explicar qué significa ni qué revisar, y muchas solo funcionan con un tipo de adaptador.</span></div>
-          <div class="so"><b>Solución</b><span>App Android (Capacitor) que habla el protocolo ELM327 de verdad: handshake, detección de protocolo (CAN, ISO 9141, KWP, J1850), lectura de PIDs en vivo, <strong>códigos almacenados, pendientes y permanentes</strong> con ficha en español (síntomas, causas probables, qué revisar), cuadro congelado, monitores de emisiones, VIN decodificado, historial y <strong>borrado con verificación posterior</strong>. Se conecta por <strong>Wi-Fi</strong> (socket TCP nativo, atando el proceso a la red del adaptador) o por <strong>Bluetooth clásico SPP</strong> mediante un plugin nativo propio. Incluye un adaptador simulado y un puente para probar toda la app en la PC sin carro.</span></div>
-          <div class="re"><b>Resultado</b><span>Diagnóstico completo en español desde el celular, con 78 pruebas automáticas que cubren desde la decodificación de tramas CAN multi-frame hasta el ciclo completo de conexión, lectura y borrado por ambos enlaces.</span></div>
         </div>
-        <div class="tech"><span>JavaScript</span><span>Capacitor</span><span>Android</span><span>Java</span><span>Node.js</span><span>ELM327 / OBD-II</span></div>
-        <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
-      </div>
-    </div>
-    <div class="ficha" id="f-logspro" role="dialog" aria-modal="true"
-         aria-label="LOGSPRO · Log Analyzer QA" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>LOGSPRO · Log Analyzer QA</h3>
-        <div class="rol">Análisis de logs de banca móvil</div>
-        <div class="capturas"><div class="media"><img src="img/logspro-resumen.jpg" width="1600" height="906" alt="LOGSPRO: resumen de un log de banca móvil con totales, errores y trazas sin respuesta" loading="lazy" /></div><div class="media"><img src="img/logspro-trazas.jpg" width="1600" height="906" alt="Vista de trazas: INPUT y OUTPUT agrupados por ID, con errores y trazas sin respuesta resaltadas" loading="lazy" /></div></div>
-        <div class="case">
+      </article>
+      <article class="proyecto der" id="p-logspro">
+        <div class="medios"><div class="media"><img src="img/logspro-resumen.jpg" width="1600" height="906" alt="LOGSPRO: resumen de un log de banca móvil con totales, errores y trazas sin respuesta" loading="lazy" /></div>
+          <div class="extras"><div class="media"><img src="img/logspro-trazas.jpg" width="1600" height="906" alt="Vista de trazas: INPUT y OUTPUT agrupados por ID, con errores y trazas sin respuesta resaltadas" loading="lazy" /></div></div>
+        </div>
+        <div class="info">
+          <h3>LOGSPRO · Log Analyzer QA</h3>
+          <div class="rol">Análisis de logs de banca móvil</div>
+          <div class="case">
           <div class="pr"><b>Problema</b><span>Revisar los logs de una plataforma de banca móvil para reproducir un defecto significaba abrir archivos de miles de líneas en un editor de texto y buscar a mano el INPUT y el OUTPUT de cada transacción.</span></div>
           <div class="so"><b>Solución</b><span>Aplicación de escritorio que lee archivos o carpetas de logs (detección de codificación UTF-8/UTF-16/Latin-1), <strong>agrupa INPUT y OUTPUT por ID de traza</strong> y clasifica cada una como exitosa, con error o <strong>sin respuesta</strong>. Vistas de tabla, trazas, métodos y resumen; filtros por método, dirección, estado y usuario; gráficas en ventana aparte; exportación a <strong>Excel</strong> (resumen, detalle, errores) y <strong>PDF</strong>.</span></div>
           <div class="re"><b>Resultado</b><span>De minutos buscando en texto plano a segundos: el último error, los métodos con más fallos y las trazas huérfanas aparecen de inmediato, y el reporte sale listo para adjuntar al ticket.</span></div>
         </div>
         <div class="tech"><span>Electron</span><span>JavaScript</span><span>Regex</span><span>SheetJS</span><span>electron-builder</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
-      </div>
-    </div>
-    <div class="ficha" id="f-lightshot-desktop" role="dialog" aria-modal="true"
-         aria-label="Lightshot Desktop" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>Lightshot Desktop</h3>
-        <div class="rol">Captura, anotación y grabación de pantalla para evidencias QA</div>
-        <div class="capturas"><div class="media"><img src="img/lightshot-anotaciones.jpg" width="1280" height="800" alt="Lightshot Desktop anotando una captura: rectángulo, flecha, numeración y resaltado" loading="lazy" /></div></div>
-        <div class="case">
-          <div class="pr"><b>Problema</b><span>Documentar una evidencia de prueba implicaba capturar, abrir un editor, anotar, tapar datos sensibles, guardar y pegar: varios minutos por cada hallazgo.</span></div>
-          <div class="so"><b>Solución</b><span>Al abrirla congela la pantalla y muestra una barra de anotación: rectángulo, elipse, flecha, texto editable, resaltado, <strong>numeración de pasos</strong> y <strong>desenfoque</strong> para datos sensibles. Cada cambio se copia al portapapeles; guarda PNG/JPG y graba pantalla a <strong>MKV</strong> (remux con FFmpeg, sin recodificar). Ventana transparente sin marco, IPC aislado.</span></div>
-          <div class="re"><b>Resultado</b><span>Evidencia lista para pegar en Jira o en un ticket en segundos, con los datos sensibles ocultos antes de compartir.</span></div>
         </div>
-        <div class="tech"><span>Electron</span><span>JavaScript</span><span>Canvas API</span><span>MediaRecorder</span><span>FFmpeg</span></div>
-        <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
-      </div>
-    </div>
-    <div class="ficha" id="f-contabilidad-iftae" role="dialog" aria-modal="true"
-         aria-label="Contabilidad IFTAE" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>Contabilidad IFTAE</h3>
-        <div class="rol">Sistema contable de escritorio para una institución educativa</div>
-        <div class="capturas"><div class="media"><img src="img/iftae-dashboard.png" width="1264" height="1178" alt="Dashboard del sistema de contabilidad IFTAE" loading="lazy" /></div><div class="media"><img src="img/iftae-pagos.png" width="1028" height="681" alt="Pagos con recibo anulado" loading="lazy" /></div><div class="media"><img src="img/iftae-graficas.png" width="1012" height="1016" alt="Gráficas de ingresos y egresos" loading="lazy" /></div><div class="media"><img src="img/iftae-recibo.png" width="448" height="674" alt="Recibo térmico" loading="lazy" /></div></div>
-        <div class="case">
-          <div class="pr"><b>Problema</b><span>Una institución educativa llevaba pagos a empleados, ingresos y arqueos en hojas sueltas, sin trazabilidad ni respaldos, en equipos antiguos con Windows 7 y sin internet.</span></div>
-          <div class="so"><b>Solución</b><span>Aplicación instalable con base <strong>SQLite local</strong> y <strong>respaldo automático</strong> tras cada movimiento; recibos numerados, anulación con trazabilidad, cierre de mes, bitácora de auditoría y contraseñas con PBKDF2. <strong>Dos compilaciones</strong>: Windows 10/11 (SQLite nativo) y Windows 7 de 32 bits (SQLite en WebAssembly) sobre el mismo archivo de datos. Suite de pruebas automatizadas y manual de usuario ilustrado.</span></div>
-          <div class="re"><b>Resultado</b><span>En uso real en el Instituto de Formación Técnica Albert Einstein: sin dependencia de internet, historial auditable y recuperación ante fallos con un clic.</span></div>
+      </article>
+      <article class="proyecto izq" id="p-ds-160">
+        <div class="medios"><div class="media"><img src="img/ds160-app.jpg" width="1600" height="925" alt="Automatización DS-160: Excel del cliente, acciones y progreso por secciones del formulario" loading="lazy" /></div>
         </div>
-        <div class="tech"><span>Electron</span><span>JavaScript</span><span>SQLite</span><span>Node.js</span><span>Chart.js</span></div>
-        <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
-      </div>
-    </div>
-    <div class="ficha" id="f-compresor-pdf" role="dialog" aria-modal="true"
-         aria-label="Compresor de PDF" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>Compresor de PDF</h3>
-        <div class="rol">Herramienta de escritorio</div>
-        <div class="capturas"><div class="media"><img src="img/compresor-pdf.jpg" width="1120" height="1144" alt="Compresor de PDF: perfil de compresión, DPI y modo de color" loading="lazy" /></div></div>
-        <div class="case">
-          <div class="pr"><b>Problema</b><span>Enviar documentos por correo con límite de tamaño obligaba a subir PDFs a servicios web de terceros o a instalar herramientas complicadas.</span></div>
-          <div class="so"><b>Solución</b><span>Utilidad de escritorio sobre <strong>Ghostscript</strong> con perfiles de calidad, DPI configurable y modo de color; todo el procesamiento ocurre en el equipo. Empaquetada con Electron Forge.</span></div>
-          <div class="re"><b>Resultado</b><span>PDFs reducidos en un clic sin que los documentos salgan del computador.</span></div>
-        </div>
-        <div class="tech"><span>Electron</span><span>Node.js</span><span>Ghostscript</span><span>Electron Forge</span></div>
-        <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
-      </div>
-    </div>
-    <div class="ficha" id="f-ds-160" role="dialog" aria-modal="true"
-         aria-label="Automatización asistida del formulario DS-160" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>Automatización asistida del formulario DS-160</h3>
-        <div class="rol">Automatización de procesos con Python</div>
-        <div class="capturas"><div class="media"><img src="img/ds160-app.jpg" width="1600" height="925" alt="Automatización DS-160: Excel del cliente, acciones y progreso por secciones del formulario" loading="lazy" /></div></div>
-        <div class="case">
+        <div class="info">
+          <h3>Automatización asistida del formulario DS-160</h3>
+          <div class="rol">Automatización de procesos con Python</div>
+          <div class="case">
           <div class="pr"><b>Problema</b><span>Llenar la solicitud de visa americana tomaba más de una hora de digitación por solicitante, con errores de transcripción y sin forma de retomar si algo fallaba.</span></div>
           <div class="so"><b>Solución</b><span>Aplicación Python que lee un Excel por solicitante, <strong>valida los datos antes de empezar</strong> y llena el formulario sección por sección (18 secciones) con reanudación de solicitudes existentes y registro en vivo. El CAPTCHA, la foto, la revisión y el envío se hacen siempre a mano. Empaquetada como ejecutable con instalador.</span></div>
           <div class="re"><b>Resultado</b><span>De más de una hora a minutos de revisión por solicitante, con la persona en control de los pasos sensibles. Código privado por manejar datos personales.</span></div>
         </div>
         <div class="tech"><span>Python</span><span>Selenium</span><span>openpyxl</span><span>PyInstaller</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado (datos personales). Demostración disponible en entrevista.</span></div>
-      </div>
+        </div>
+      </article>
     </div>
-    <div class="ficha" id="f-validacion-de-datos" role="dialog" aria-modal="true"
-         aria-label="Validación de datos para migraciones" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>Validación de datos para migraciones</h3>
-        <div class="rol">Calidad de datos · Python</div>
-        <div class="capturas"><div class="media"><img src="img/pandera-reporte.jpg" width="1600" height="1007" alt="Reporte de validación de datos: score de calidad, registros válidos y con error" loading="lazy" /></div><div class="media"><img src="img/pandera-editor.jpg" width="1600" height="1007" alt="Editor de reglas: archivo activo y vista previa del CSV" loading="lazy" /></div><div class="media"><img src="img/pandera-reglas.jpg" width="1600" height="1007" alt="Reglas actuales por columna: descripción, nulos, unicidad y regex" loading="lazy" /></div></div>
-        <div class="case">
+    <div class="grupo" id="g-datos">
+      <h3 class="grupo-t">Datos y migraciones <span>Validación de datos y verificación de migraciones a escala.</span></h3>
+      <article class="proyecto der" id="p-validacion-de-datos">
+        <div class="medios"><div class="media"><img src="img/pandera-reporte.jpg" width="1600" height="1007" alt="Reporte de validación de datos: score de calidad, registros válidos y con error" loading="lazy" /></div>
+          <div class="extras"><div class="media"><img src="img/pandera-editor.jpg" width="1600" height="1007" alt="Editor de reglas: archivo activo y vista previa del CSV" loading="lazy" /></div><div class="media"><img src="img/pandera-reglas.jpg" width="1600" height="1007" alt="Reglas actuales por columna: descripción, nulos, unicidad y regex" loading="lazy" /></div></div>
+        </div>
+        <div class="info">
+          <h3>Validación de datos para migraciones</h3>
+          <div class="rol">Calidad de datos · Python</div>
+          <div class="case">
           <div class="pr"><b>Problema</b><span>Antes de una migración masiva había que revisar decenas de miles de registros a mano en Excel; las reglas de negocio vivían en documentos que cambiaban y los errores no se podían rastrear hasta la fila.</span></div>
           <div class="so"><b>Solución</b><span>Las reglas se escriben en <strong>lenguaje natural</strong> y se convierten en esquemas de <strong>Pandera</strong> (tipo, regex, nulos, unicidad, longitud, rangos, reglas condicionales). Carga de CSV/Excel con detección de codificación, edición inline y revalidación; reporte HTML con score y filtros, exportación a Excel/CSV y manual del sistema generado en Word.</span></div>
           <div class="re"><b>Resultado</b><span>Cada hallazgo con su columna, valor y regla; reglas editables sin tocar código. Usado sobre <strong>más de 100.000 registros</strong> (predial, tránsito, multas y acuerdos de pago).</span></div>
         </div>
         <div class="tech"><span>Python</span><span>Pandera</span><span>pandas</span><span>Flask</span><span>openpyxl</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
-      </div>
-    </div>
-    <div class="ficha" id="f-q-eda" role="dialog" aria-modal="true"
-         aria-label="Q-EDA · Calidad de datos y EDA automatizado" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>Q-EDA · Calidad de datos y EDA automatizado</h3>
-        <div class="rol">Framework configurable · Python</div>
-        <div class="capturas"><div class="media"><img src="img/qeda-calidad.jpg" width="1600" height="1007" alt="Informe Q-EDA: porcentaje de calidad por dataset y score por dimensión (validez, completitud, unicidad, redundancia, precisión)" loading="lazy" /></div></div>
-        <div class="case">
+        </div>
+      </article>
+      <article class="proyecto izq" id="p-q-eda">
+        <div class="medios"><div class="media"><img src="img/qeda-calidad.jpg" width="1600" height="1007" alt="Informe Q-EDA: porcentaje de calidad por dataset y score por dimensión (validez, completitud, unicidad, redundancia, precisión)" loading="lazy" /></div>
+        </div>
+        <div class="info">
+          <h3>Q-EDA · Calidad de datos y EDA automatizado</h3>
+          <div class="rol">Framework configurable · Python</div>
+          <div class="case">
           <div class="pr"><b>Problema</b><span>Cada dataset nuevo que llegaba para migrar (expedientes, deudas, incapacidades) exigía repetir a mano el mismo análisis: revisar tipos, nulos, duplicados, rangos y reglas de negocio, y armar un informe. El trabajo no era reutilizable y cada analista lo hacía distinto.</span></div>
           <div class="so"><b>Solución</b><span>Framework <strong>dirigido por configuración</strong>: un JSON describe los datasets, el esquema esperado y las reglas, y el motor hace el resto. Carga Excel/CSV, estandariza nombres de columna, valida esquema, ejecuta reglas de calidad por dimensión (<strong>validez, completitud, unicidad, redundancia, consistencia, precisión</strong>), corre el EDA, genera gráficos y produce un <strong>informe HTML</strong> con score por dataset y hallazgos fila a fila. Logging estructurado por etapa con <code>structlog</code>, Dockerfile y suite de pruebas.</span></div>
           <div class="re"><b>Resultado</b><span>Un informe de calidad reproducible en segundos por cada entrega de datos: 47 pruebas automáticas, ejecución de menos de 10 s sobre las matrices de ejemplo y reglas que se ajustan editando JSON, sin tocar código.</span></div>
         </div>
         <div class="tech"><span>Python</span><span>pandas</span><span>seaborn</span><span>structlog</span><span>pytest</span><span>Docker</span></div>
         <div class="links"><span class="priv">🔒 Desarrollado en Jikkosoft. Demostración disponible en entrevista.</span></div>
-      </div>
-    </div>
-    <div class="ficha" id="f-aplicativo-comparativo" role="dialog" aria-modal="true"
-         aria-label="Aplicativo Comparativo" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>Aplicativo Comparativo</h3>
-        <div class="rol">Verificación de migraciones · origen vs destino</div>
-        <div class="capturas"><div class="media"><img src="img/comparativo-resumen.jpg" width="1600" height="1007" alt="Aplicativo Comparativo: resumen de la migración con registros comparados, idénticos y diferencias por campo" loading="lazy" /></div></div>
-        <div class="case">
+        </div>
+      </article>
+      <article class="proyecto der" id="p-aplicativo-comparativo">
+        <div class="medios"><div class="media"><img src="img/comparativo-resumen.jpg" width="1600" height="1007" alt="Aplicativo Comparativo: resumen de la migración con registros comparados, idénticos y diferencias por campo" loading="lazy" /></div>
+        </div>
+        <div class="info">
+          <h3>Aplicativo Comparativo</h3>
+          <div class="rol">Verificación de migraciones · origen vs destino</div>
+          <div class="case">
           <div class="pr"><b>Problema</b><span>Tras migrar más de 19.000 expedientes de tránsito de un sistema municipal a MongoDB había que certificar que ningún dato se perdió ni cambió. Comparar a ojo dos archivos de 11 columnas era inviable, y una comparación literal marcaba todo como distinto por simples diferencias de formato.</span></div>
           <div class="so"><b>Solución</b><span>Herramienta en Python que mapea las columnas del destino a las del origen, <strong>empareja por número de expediente</strong> y compara campo a campo con normalización de texto. Una <strong>normalización inteligente por campo</strong> distingue diferencia de formato (puntos en el título ejecutivo, hora en las fechas, nulos vs vacío) de pérdida real de datos, y los campos que un lado no trae se reportan aparte en lugar de inflar el conteo. Front en <strong>Streamlit</strong> con métricas, diferencias por campo, tabla espejo con celdas en rojo, filtros y exportación a Excel. Comparación vectorizada con pandas: de 66 s a 1 s.</span></div>
           <div class="re"><b>Resultado</b><span>19.087 expedientes comparados en segundos: 17.675 idénticos y 1.412 con diferencias reales localizadas al campo exacto (nombre y teléfono), con evidencia en Excel para el equipo de migración.</span></div>
         </div>
         <div class="tech"><span>Python</span><span>pandas</span><span>Streamlit</span><span>openpyxl</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado (datos personales). Demostración y código disponibles en entrevista.</span></div>
-      </div>
-    </div>
-    <div class="ficha" id="f-visor-de-parquet" role="dialog" aria-modal="true"
-         aria-label="Visor de Parquet" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>Visor de Parquet</h3>
-        <div class="rol">Herramienta de escritorio · Parquet a CSV y Excel</div>
-        <div class="capturas"><div class="media"><img src="img/parquet-visor.jpg" width="1600" height="933" alt="Visor de Parquet: archivo de vehículos abierto en una grilla tipo Excel con botones para exportar a CSV y Excel" loading="lazy" /></div></div>
-        <div class="case">
+        </div>
+      </article>
+      <article class="proyecto izq" id="p-visor-de-parquet">
+        <div class="medios"><div class="media"><img src="img/parquet-visor.jpg" width="1600" height="933" alt="Visor de Parquet: archivo de vehículos abierto en una grilla tipo Excel con botones para exportar a CSV y Excel" loading="lazy" /></div>
+        </div>
+        <div class="info">
+          <h3>Visor de Parquet</h3>
+          <div class="rol">Herramienta de escritorio · Parquet a CSV y Excel</div>
+          <div class="case">
           <div class="pr"><b>Problema</b><span>Las salidas de una migración de expedientes de tránsito llegaban en formato Parquet. El equipo funcional y los analistas no podían abrirlas: Excel no lo lee y pedir cada archivo convertido al equipo de datos frenaba la validación.</span></div>
           <div class="so"><b>Solución</b><span>Aplicación de escritorio en Python que abre cualquier Parquet con <strong>PyArrow</strong>, lo procesa con <strong>Polars</strong> y lo muestra en una grilla tipo hoja de cálculo (navegar, seleccionar, copiar). Exporta a <strong>CSV listo para Excel en español</strong> (separador <code>;</code>, UTF-8 con BOM, campos entrecomillados) y a <strong>XLSX</strong> con formato compacto para columnas largas. Empaquetada como ejecutable con PyInstaller para que no haga falta instalar Python.</span></div>
           <div class="re"><b>Resultado</b><span>Cualquier persona del equipo abre y revisa un Parquet de miles de filas en segundos y lo comparte en Excel, sin depender del equipo de datos.</span></div>
         </div>
         <div class="tech"><span>Python</span><span>Polars</span><span>PyArrow</span><span>pandas</span><span>ttkbootstrap</span><span>PyInstaller</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
-      </div>
+        </div>
+      </article>
     </div>
-    <div class="ficha" id="f-creador-de-manuales" role="dialog" aria-modal="true"
-         aria-label="Creador de Manuales" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>Creador de Manuales</h3>
-        <div class="rol">De guion de pruebas Excel a manual de usuario en PDF y Word</div>
-        <div class="capturas"><div class="media"><img src="img/manuales-editor.jpg" width="1600" height="1007" alt="Creador de Manuales: editor paso a paso con la captura, el título y la instrucción generada por OCR" loading="lazy" /></div><div class="media"><img src="img/manuales-pdf.jpg" width="1600" height="677" alt="Manual generado: portada con control de versiones y páginas con pasos, capturas numeradas y resultado esperado" loading="lazy" /></div></div>
-        <div class="case">
+    <div class="grupo" id="g-apps">
+      <h3 class="grupo-t">Aplicaciones <span>Aplicaciones completas de escritorio, móvil y web.</span></h3>
+      <article class="proyecto der" id="p-obdscan">
+        <div class="medios"><div class="media"><img src="img/obdscan-pantallas.jpg" width="1600" height="1007" alt="OBDSCAN: pantalla de conexión Wi-Fi o Bluetooth, lista de adaptadores emparejados, tablero con datos en vivo y códigos de falla con ficha de diagnóstico" loading="lazy" /></div>
+        </div>
+        <div class="info">
+          <h3>OBDSCAN</h3>
+          <div class="rol">Escáner automotriz OBD-II para Android · Wi-Fi y Bluetooth</div>
+          <div class="case">
+          <div class="pr"><b>Problema</b><span>Un adaptador ELM327 cuesta poco, pero las apps que lo acompañan están en inglés, muestran el código de falla sin explicar qué significa ni qué revisar, y muchas solo funcionan con un tipo de adaptador.</span></div>
+          <div class="so"><b>Solución</b><span>App Android (Capacitor) que habla el protocolo ELM327 de verdad: handshake, detección de protocolo (CAN, ISO 9141, KWP, J1850), lectura de PIDs en vivo, <strong>códigos almacenados, pendientes y permanentes</strong> con ficha en español (síntomas, causas probables, qué revisar), cuadro congelado, monitores de emisiones, VIN decodificado, historial y <strong>borrado con verificación posterior</strong>. Se conecta por <strong>Wi-Fi</strong> (socket TCP nativo, atando el proceso a la red del adaptador) o por <strong>Bluetooth clásico SPP</strong> mediante un plugin nativo propio. Incluye un adaptador simulado y un puente para probar toda la app en la PC sin carro.</span></div>
+          <div class="re"><b>Resultado</b><span>Diagnóstico completo en español desde el celular, con 78 pruebas automáticas que cubren desde la decodificación de tramas CAN multi-frame hasta el ciclo completo de conexión, lectura y borrado por ambos enlaces.</span></div>
+        </div>
+        <div class="tech"><span>JavaScript</span><span>Capacitor</span><span>Android</span><span>Java</span><span>Node.js</span><span>ELM327 / OBD-II</span></div>
+        <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
+        </div>
+      </article>
+      <article class="proyecto izq" id="p-lightshot-desktop">
+        <div class="medios"><div class="media"><img src="img/lightshot-anotaciones.jpg" width="1280" height="800" alt="Lightshot Desktop anotando una captura: rectángulo, flecha, numeración y resaltado" loading="lazy" /></div>
+        </div>
+        <div class="info">
+          <h3>Lightshot Desktop</h3>
+          <div class="rol">Captura, anotación y grabación de pantalla para evidencias QA</div>
+          <div class="case">
+          <div class="pr"><b>Problema</b><span>Documentar una evidencia de prueba implicaba capturar, abrir un editor, anotar, tapar datos sensibles, guardar y pegar: varios minutos por cada hallazgo.</span></div>
+          <div class="so"><b>Solución</b><span>Al abrirla congela la pantalla y muestra una barra de anotación: rectángulo, elipse, flecha, texto editable, resaltado, <strong>numeración de pasos</strong> y <strong>desenfoque</strong> para datos sensibles. Cada cambio se copia al portapapeles; guarda PNG/JPG y graba pantalla a <strong>MKV</strong> (remux con FFmpeg, sin recodificar). Ventana transparente sin marco, IPC aislado.</span></div>
+          <div class="re"><b>Resultado</b><span>Evidencia lista para pegar en Jira o en un ticket en segundos, con los datos sensibles ocultos antes de compartir.</span></div>
+        </div>
+        <div class="tech"><span>Electron</span><span>JavaScript</span><span>Canvas API</span><span>MediaRecorder</span><span>FFmpeg</span></div>
+        <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
+        </div>
+      </article>
+      <article class="proyecto der" id="p-contabilidad-iftae">
+        <div class="medios"><div class="media"><img src="img/iftae-dashboard.png" width="1264" height="1178" alt="Dashboard del sistema de contabilidad IFTAE" loading="lazy" /></div>
+          <div class="extras"><div class="media"><img src="img/iftae-pagos.png" width="1028" height="681" alt="Pagos con recibo anulado" loading="lazy" /></div><div class="media"><img src="img/iftae-graficas.png" width="1012" height="1016" alt="Gráficas de ingresos y egresos" loading="lazy" /></div><div class="media"><img src="img/iftae-recibo.png" width="448" height="674" alt="Recibo térmico" loading="lazy" /></div></div>
+        </div>
+        <div class="info">
+          <h3>Contabilidad IFTAE</h3>
+          <div class="rol">Sistema contable de escritorio para una institución educativa</div>
+          <div class="case">
+          <div class="pr"><b>Problema</b><span>Una institución educativa llevaba pagos a empleados, ingresos y arqueos en hojas sueltas, sin trazabilidad ni respaldos, en equipos antiguos con Windows 7 y sin internet.</span></div>
+          <div class="so"><b>Solución</b><span>Aplicación instalable con base <strong>SQLite local</strong> y <strong>respaldo automático</strong> tras cada movimiento; recibos numerados, anulación con trazabilidad, cierre de mes, bitácora de auditoría y contraseñas con PBKDF2. <strong>Dos compilaciones</strong>: Windows 10/11 (SQLite nativo) y Windows 7 de 32 bits (SQLite en WebAssembly) sobre el mismo archivo de datos. Suite de pruebas automatizadas y manual de usuario ilustrado.</span></div>
+          <div class="re"><b>Resultado</b><span>En uso real en el Instituto de Formación Técnica Albert Einstein: sin dependencia de internet, historial auditable y recuperación ante fallos con un clic.</span></div>
+        </div>
+        <div class="tech"><span>Electron</span><span>JavaScript</span><span>SQLite</span><span>Node.js</span><span>Chart.js</span></div>
+        <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
+        </div>
+      </article>
+      <article class="proyecto izq" id="p-compresor-pdf">
+        <div class="medios"><div class="media"><img src="img/compresor-pdf.jpg" width="1120" height="1144" alt="Compresor de PDF: perfil de compresión, DPI y modo de color" loading="lazy" /></div>
+        </div>
+        <div class="info">
+          <h3>Compresor de PDF</h3>
+          <div class="rol">Herramienta de escritorio</div>
+          <div class="case">
+          <div class="pr"><b>Problema</b><span>Enviar documentos por correo con límite de tamaño obligaba a subir PDFs a servicios web de terceros o a instalar herramientas complicadas.</span></div>
+          <div class="so"><b>Solución</b><span>Utilidad de escritorio sobre <strong>Ghostscript</strong> con perfiles de calidad, DPI configurable y modo de color; todo el procesamiento ocurre en el equipo. Empaquetada con Electron Forge.</span></div>
+          <div class="re"><b>Resultado</b><span>PDFs reducidos en un clic sin que los documentos salgan del computador.</span></div>
+        </div>
+        <div class="tech"><span>Electron</span><span>Node.js</span><span>Ghostscript</span><span>Electron Forge</span></div>
+        <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
+        </div>
+      </article>
+      <article class="proyecto der" id="p-creador-de-manuales">
+        <div class="medios"><div class="media"><img src="img/manuales-editor.jpg" width="1600" height="1007" alt="Creador de Manuales: editor paso a paso con la captura, el título y la instrucción generada por OCR" loading="lazy" /></div>
+          <div class="extras"><div class="media"><img src="img/manuales-pdf.jpg" width="1600" height="677" alt="Manual generado: portada con control de versiones y páginas con pasos, capturas numeradas y resultado esperado" loading="lazy" /></div></div>
+        </div>
+        <div class="info">
+          <h3>Creador de Manuales</h3>
+          <div class="rol">De guion de pruebas Excel a manual de usuario en PDF y Word</div>
+          <div class="case">
           <div class="pr"><b>Problema</b><span>Cada vez que se liberaba una funcionalidad había que escribir el manual de usuario desde cero, copiando las capturas y redactando los pasos que ya existían en el guion de pruebas de QA.</span></div>
           <div class="so"><b>Solución</b><span>Servidor Flask local que lee el <strong>guion Excel</strong> (detecta la hoja de casos y la de anexos, extrae las capturas incrustadas del XML del .xlsx), describe cada pantalla con <strong>OCR local (RapidOCR)</strong> o un modelo de visión con Ollama, y reescribe el texto de tono QA a tono de manual ("Ingrese", "Seleccione"). Editor web para revisar cada paso, anotar sobre la captura y reordenar; salida en <strong>PDF (ReportLab)</strong> y <strong>Word</strong> con portada, control de versiones, índice y figuras numeradas. Empaquetado con PyInstaller e Inno Setup.</span></div>
           <div class="re"><b>Resultado</b><span>El manual sale en minutos a partir del guion que QA ya tiene, sin volver a redactar ni recortar capturas, y todo se procesa en el equipo: ninguna pantalla interna sale a internet.</span></div>
         </div>
         <div class="tech"><span>Python</span><span>Flask</span><span>ReportLab</span><span>python-docx</span><span>RapidOCR</span><span>Ollama</span><span>openpyxl</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
-      </div>
-    </div>
-    <div class="ficha" id="f-sn4ke-deluxe" role="dialog" aria-modal="true"
-         aria-label="SN4KE Deluxe" hidden>
-      <div class="ficha-caja">
-        <button class="x" type="button" aria-label="Cerrar">&times;</button>
-        <h3>SN4KE Deluxe</h3>
-        <div class="rol">Juego web · React + Canvas</div>
-        <div class="capturas"><div class="media"><img src="img/snake-juego.jpg" width="1600" height="1007" alt="SN4KE Deluxe: tablero neón con la serpiente, obstáculos, marcador, nivel, vidas y selector de skins" loading="lazy" /></div></div>
-        <div class="case">
+        </div>
+      </article>
+      <article class="proyecto izq" id="p-sn4ke-deluxe">
+        <div class="medios"><div class="media"><img src="img/snake-juego.jpg" width="1600" height="1007" alt="SN4KE Deluxe: tablero neón con la serpiente, obstáculos, marcador, nivel, vidas y selector de skins" loading="lazy" /></div>
+        </div>
+        <div class="info">
+          <h3>SN4KE Deluxe</h3>
+          <div class="rol">Juego web · React + Canvas</div>
+          <div class="case">
           <div class="pr"><b>Problema</b><span>Proyecto personal para practicar front puro sin librerías de juego: manejar un bucle de animación, colisiones, estado y entrada táctil desde cero, y publicarlo como sitio estático.</span></div>
           <div class="so"><b>Solución</b><span>Snake estilo cyberpunk en <strong>React + Vite</strong> renderizado en <strong>Canvas</strong> con hooks propios (<code>useGameLoop</code>, <code>useCanvas</code>, <code>useSound</code>): niveles con obstáculos, vidas, récord persistente, seis skins, pausa y sonido. Controles por teclado y por <strong>deslizamiento táctil</strong> para móvil. Build estático listo para Vercel/Netlify.</span></div>
           <div class="re"><b>Resultado</b><span>Un juego fluido a 60 fps con la lógica separada de la presentación: el mismo motor sirve para escritorio y celular.</span></div>
         </div>
         <div class="tech"><span>React</span><span>Vite</span><span>Canvas API</span><span>JavaScript</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración disponible en entrevista.</span></div>
-      </div>
+        </div>
+      </article>
     </div>
+  </div>
 </section>
 
 <section id="experiencia">
@@ -1210,7 +1042,7 @@
       secs.forEach(function (sec) { io.observe(sec); });
       // ---- Aparición suave
       var rv = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); rv.unobserve(e.target); } }); }, { threshold: .08 });
-      document.querySelectorAll('.impact .card, .tarjeta, .skill, .course, .edu .card, .lang, .xp, .cform, .vcard').forEach(function (el) { el.classList.add('reveal'); rv.observe(el); });
+      document.querySelectorAll('.impact .card, .proyecto, .skill, .course, .edu .card, .lang, .xp, .cform, .vcard').forEach(function (el) { el.classList.add('reveal'); rv.observe(el); });
     }
     // ---- Lightbox
     var lb = document.getElementById('lb'), lbImg = lb.querySelector('img'), lbCap = lb.querySelector('figcaption');
@@ -1218,49 +1050,6 @@
     function closeLb() { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
     lb.addEventListener('click', closeLb);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
-    // ---- Filtro de proyectos
-    var filtros = document.querySelectorAll('.filtros button');
-    var tarjetas = document.querySelectorAll('.tarjeta');
-    filtros.forEach(function (b) {
-      b.addEventListener('click', function () {
-        var cual = b.dataset.filtro;
-        filtros.forEach(function (o) { o.setAttribute('aria-pressed', o === b); });
-        tarjetas.forEach(function (t) { t.hidden = cual !== 'todos' && t.dataset.grupo !== cual; });
-      });
-    });
-    // ---- Ficha del proyecto
-    //      No se usa <dialog> nativo: la lupa de las capturas vive en una capa
-    //      normal y el top layer del dialog la taparia.
-    var fichaAbierta = null, volverA = null;
-    function abrirFicha(id, boton) {
-      var f = document.getElementById(id);
-      if (!f) return;
-      f.hidden = false; f.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      fichaAbierta = f; volverA = boton;
-      f.querySelector('.x').focus();
-    }
-    function cerrarFicha() {
-      if (!fichaAbierta) return;
-      fichaAbierta.classList.remove('open'); fichaAbierta.hidden = true;
-      document.body.style.overflow = '';
-      fichaAbierta = null;
-      if (volverA) { volverA.focus(); volverA = null; }
-    }
-    document.querySelectorAll('.tapa').forEach(function (b) {
-      b.addEventListener('click', function () { abrirFicha(b.dataset.ficha, b); });
-    });
-    document.querySelectorAll('.ficha').forEach(function (f) {
-      f.querySelector('.x').addEventListener('click', cerrarFicha);
-      // Pulsar fuera de la caja cierra; dentro, no.
-      f.addEventListener('click', function (e) { if (e.target === f) cerrarFicha(); });
-    });
-    // En captura, para decidir antes de que el Escape de la lupa se lo lleve:
-    // si la lupa esta abierta, Escape es suyo; si no, cierra la ficha.
-    document.addEventListener('keydown', function (e) {
-      if (e.key !== 'Escape' || !fichaAbierta) return;
-      if (!document.getElementById('lb').classList.contains('open')) cerrarFicha();
-    }, true);
     // ---- Ver todos los cursos
     var vm = document.getElementById('vermas'), courses = document.querySelector('.courses');
     vm.addEventListener('click', function () { var all = courses.classList.toggle('all'); vm.textContent = all ? 'Ver menos ▴' : 'Ver todos los cursos (14) ▾'; if (!all) document.getElementById('formacion').scrollIntoView({ behavior: 'smooth' }); });
