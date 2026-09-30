@@ -194,6 +194,11 @@
     .extras { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 10px; align-items: start; }
     @media (max-width: 760px) { .proyecto.der .medios { order: 0; } }
 
+    /* Lenguaje del proyecto: es lo primero que se pregunta al ver un trabajo,
+       asi que va junto al titulo y no perdido entre las librerias. */
+    .info .rol .lenguaje { display: inline-block; margin-left: 8px; padding: 2px 11px; border-radius: 20px; background: var(--accent2); color: #04121f; font-size: .78rem; font-weight: 800; letter-spacing: .2px; text-transform: none; vertical-align: 2px; }
+    .info .rol .lenguaje + .lenguaje { margin-left: 5px; }
+
     /* ---- Habilidades ---- */
     .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
     .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -442,13 +447,13 @@
         </div>
         <div class="info">
           <h3>MobiFlow</h3>
-          <div class="rol">Grabador y reproductor de pruebas móviles</div>
+          <div class="rol">Grabador y reproductor de pruebas móviles<b class="lenguaje">TypeScript</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Diseñar casos de prueba para apps móviles era lento y frágil: capturar los toques del teléfono solo entrega coordenadas que se rompen al cambiar el layout o la resolución, y automatizar exigía escribir código Appium a mano.</span></div>
           <div class="so"><b>Solución</b><span>Aplicación de escritorio con <strong>espejo del dispositivo en vivo</strong>: se graba interactuando sobre el espejo y cada acción se convierte en un paso con <strong>localizador estable</strong> (accessibility id, resource-id, UiAutomator) y alternativas ordenadas por confianza. Reproducción con resaltado paso a paso, inspector de elementos, evidencias PNG, informe HTML y exportación a <strong>TypeScript + WebdriverIO</strong>. Motor Appium 3, preparado para iOS (XCUITest).</span></div>
           <div class="re"><b>Resultado</b><span>Casos de prueba móviles sin escribir código, con localizadores que sobreviven a cambios de diseño y un <code>.spec.ts</code> listo para integrar en CI. Menos tiempo de diseño manual en entornos móviles.</span></div>
         </div>
-        <div class="tech"><span>Electron</span><span>TypeScript</span><span>Appium</span><span>WebdriverIO</span><span>Android</span></div>
+        <div class="tech"><span>Electron</span><span>Appium</span><span>WebdriverIO</span><span>Android</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
         </div>
       </article>
@@ -458,13 +463,13 @@
         </div>
         <div class="info">
           <h3>LOGSPRO · Log Analyzer QA</h3>
-          <div class="rol">Análisis de logs de banca móvil</div>
+          <div class="rol">Análisis de logs de banca móvil<b class="lenguaje">JavaScript</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Revisar los logs de una plataforma de banca móvil para reproducir un defecto significaba abrir archivos de miles de líneas en un editor de texto y buscar a mano el INPUT y el OUTPUT de cada transacción.</span></div>
           <div class="so"><b>Solución</b><span>Aplicación de escritorio que lee archivos o carpetas de logs (detección de codificación UTF-8/UTF-16/Latin-1), <strong>agrupa INPUT y OUTPUT por ID de traza</strong> y clasifica cada una como exitosa, con error o <strong>sin respuesta</strong>. Vistas de tabla, trazas, métodos y resumen; filtros por método, dirección, estado y usuario; gráficas en ventana aparte; exportación a <strong>Excel</strong> (resumen, detalle, errores) y <strong>PDF</strong>.</span></div>
           <div class="re"><b>Resultado</b><span>De minutos buscando en texto plano a segundos: el último error, los métodos con más fallos y las trazas huérfanas aparecen de inmediato, y el reporte sale listo para adjuntar al ticket.</span></div>
         </div>
-        <div class="tech"><span>Electron</span><span>JavaScript</span><span>Regex</span><span>SheetJS</span><span>electron-builder</span></div>
+        <div class="tech"><span>Electron</span><span>Regex</span><span>SheetJS</span><span>electron-builder</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
         </div>
       </article>
@@ -473,13 +478,13 @@
         </div>
         <div class="info">
           <h3>Automatización asistida del formulario DS-160</h3>
-          <div class="rol">Automatización de procesos con Python</div>
+          <div class="rol">Automatización de procesos con Python<b class="lenguaje">Python</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Llenar la solicitud de visa americana tomaba más de una hora de digitación por solicitante, con errores de transcripción y sin forma de retomar si algo fallaba.</span></div>
           <div class="so"><b>Solución</b><span>Aplicación Python que lee un Excel por solicitante, <strong>valida los datos antes de empezar</strong> y llena el formulario sección por sección (18 secciones) con reanudación de solicitudes existentes y registro en vivo. El CAPTCHA, la foto, la revisión y el envío se hacen siempre a mano. Empaquetada como ejecutable con instalador.</span></div>
           <div class="re"><b>Resultado</b><span>De más de una hora a minutos de revisión por solicitante, con la persona en control de los pasos sensibles. Código privado por manejar datos personales.</span></div>
         </div>
-        <div class="tech"><span>Python</span><span>Selenium</span><span>openpyxl</span><span>PyInstaller</span></div>
+        <div class="tech"><span>Selenium</span><span>openpyxl</span><span>PyInstaller</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado (datos personales). Demostración disponible en entrevista.</span></div>
         </div>
       </article>
@@ -492,13 +497,13 @@
         </div>
         <div class="info">
           <h3>Validación de datos para migraciones</h3>
-          <div class="rol">Calidad de datos · Python</div>
+          <div class="rol">Calidad de datos · Python<b class="lenguaje">Python</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Antes de una migración masiva había que revisar decenas de miles de registros a mano en Excel; las reglas de negocio vivían en documentos que cambiaban y los errores no se podían rastrear hasta la fila.</span></div>
           <div class="so"><b>Solución</b><span>Las reglas se escriben en <strong>lenguaje natural</strong> y se convierten en esquemas de <strong>Pandera</strong> (tipo, regex, nulos, unicidad, longitud, rangos, reglas condicionales). Carga de CSV/Excel con detección de codificación, edición inline y revalidación; reporte HTML con score y filtros, exportación a Excel/CSV y manual del sistema generado en Word.</span></div>
           <div class="re"><b>Resultado</b><span>Cada hallazgo con su columna, valor y regla; reglas editables sin tocar código. Usado sobre <strong>más de 100.000 registros</strong> (predial, tránsito, multas y acuerdos de pago).</span></div>
         </div>
-        <div class="tech"><span>Python</span><span>Pandera</span><span>pandas</span><span>Flask</span><span>openpyxl</span></div>
+        <div class="tech"><span>Pandera</span><span>pandas</span><span>Flask</span><span>openpyxl</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
         </div>
       </article>
@@ -507,13 +512,13 @@
         </div>
         <div class="info">
           <h3>Q-EDA · Calidad de datos y EDA automatizado</h3>
-          <div class="rol">Framework configurable · Python</div>
+          <div class="rol">Framework configurable · Python<b class="lenguaje">Python</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Cada dataset nuevo que llegaba para migrar (expedientes, deudas, incapacidades) exigía repetir a mano el mismo análisis: revisar tipos, nulos, duplicados, rangos y reglas de negocio, y armar un informe. El trabajo no era reutilizable y cada analista lo hacía distinto.</span></div>
           <div class="so"><b>Solución</b><span>Framework <strong>dirigido por configuración</strong>: un JSON describe los datasets, el esquema esperado y las reglas, y el motor hace el resto. Carga Excel/CSV, estandariza nombres de columna, valida esquema, ejecuta reglas de calidad por dimensión (<strong>validez, completitud, unicidad, redundancia, consistencia, precisión</strong>), corre el EDA, genera gráficos y produce un <strong>informe HTML</strong> con score por dataset y hallazgos fila a fila. Logging estructurado por etapa con <code>structlog</code>, Dockerfile y suite de pruebas.</span></div>
           <div class="re"><b>Resultado</b><span>Un informe de calidad reproducible en segundos por cada entrega de datos: 47 pruebas automáticas, ejecución de menos de 10 s sobre las matrices de ejemplo y reglas que se ajustan editando JSON, sin tocar código.</span></div>
         </div>
-        <div class="tech"><span>Python</span><span>pandas</span><span>seaborn</span><span>structlog</span><span>pytest</span><span>Docker</span></div>
+        <div class="tech"><span>pandas</span><span>seaborn</span><span>structlog</span><span>pytest</span><span>Docker</span></div>
         <div class="links"><span class="priv">🔒 Desarrollado en Jikkosoft. Demostración disponible en entrevista.</span></div>
         </div>
       </article>
@@ -522,13 +527,13 @@
         </div>
         <div class="info">
           <h3>Aplicativo Comparativo</h3>
-          <div class="rol">Verificación de migraciones · origen vs destino</div>
+          <div class="rol">Verificación de migraciones · origen vs destino<b class="lenguaje">Python</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Tras migrar más de 19.000 expedientes de tránsito de un sistema municipal a MongoDB había que certificar que ningún dato se perdió ni cambió. Comparar a ojo dos archivos de 11 columnas era inviable, y una comparación literal marcaba todo como distinto por simples diferencias de formato.</span></div>
           <div class="so"><b>Solución</b><span>Herramienta en Python que mapea las columnas del destino a las del origen, <strong>empareja por número de expediente</strong> y compara campo a campo con normalización de texto. Una <strong>normalización inteligente por campo</strong> distingue diferencia de formato (puntos en el título ejecutivo, hora en las fechas, nulos vs vacío) de pérdida real de datos, y los campos que un lado no trae se reportan aparte en lugar de inflar el conteo. Front en <strong>Streamlit</strong> con métricas, diferencias por campo, tabla espejo con celdas en rojo, filtros y exportación a Excel. Comparación vectorizada con pandas: de 66 s a 1 s.</span></div>
           <div class="re"><b>Resultado</b><span>19.087 expedientes comparados en segundos: 17.675 idénticos y 1.412 con diferencias reales localizadas al campo exacto (nombre y teléfono), con evidencia en Excel para el equipo de migración.</span></div>
         </div>
-        <div class="tech"><span>Python</span><span>pandas</span><span>Streamlit</span><span>openpyxl</span></div>
+        <div class="tech"><span>pandas</span><span>Streamlit</span><span>openpyxl</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado (datos personales). Demostración y código disponibles en entrevista.</span></div>
         </div>
       </article>
@@ -537,13 +542,13 @@
         </div>
         <div class="info">
           <h3>Visor de Parquet</h3>
-          <div class="rol">Herramienta de escritorio · Parquet a CSV y Excel</div>
+          <div class="rol">Herramienta de escritorio · Parquet a CSV y Excel<b class="lenguaje">Python</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Las salidas de una migración de expedientes de tránsito llegaban en formato Parquet. El equipo funcional y los analistas no podían abrirlas: Excel no lo lee y pedir cada archivo convertido al equipo de datos frenaba la validación.</span></div>
           <div class="so"><b>Solución</b><span>Aplicación de escritorio en Python que abre cualquier Parquet con <strong>PyArrow</strong>, lo procesa con <strong>Polars</strong> y lo muestra en una grilla tipo hoja de cálculo (navegar, seleccionar, copiar). Exporta a <strong>CSV listo para Excel en español</strong> (separador <code>;</code>, UTF-8 con BOM, campos entrecomillados) y a <strong>XLSX</strong> con formato compacto para columnas largas. Empaquetada como ejecutable con PyInstaller para que no haga falta instalar Python.</span></div>
           <div class="re"><b>Resultado</b><span>Cualquier persona del equipo abre y revisa un Parquet de miles de filas en segundos y lo comparte en Excel, sin depender del equipo de datos.</span></div>
         </div>
-        <div class="tech"><span>Python</span><span>Polars</span><span>PyArrow</span><span>pandas</span><span>ttkbootstrap</span><span>PyInstaller</span></div>
+        <div class="tech"><span>Polars</span><span>PyArrow</span><span>pandas</span><span>ttkbootstrap</span><span>PyInstaller</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
         </div>
       </article>
@@ -555,13 +560,13 @@
         </div>
         <div class="info">
           <h3>OBDSCAN</h3>
-          <div class="rol">Escáner automotriz OBD-II para Android · Wi-Fi y Bluetooth</div>
+          <div class="rol">Escáner automotriz OBD-II para Android · Wi-Fi y Bluetooth<b class="lenguaje">JavaScript</b><b class="lenguaje">Java</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Un adaptador ELM327 cuesta poco, pero las apps que lo acompañan están en inglés, muestran el código de falla sin explicar qué significa ni qué revisar, y muchas solo funcionan con un tipo de adaptador.</span></div>
           <div class="so"><b>Solución</b><span>App Android (Capacitor) que habla el protocolo ELM327 de verdad: handshake, detección de protocolo (CAN, ISO 9141, KWP, J1850), lectura de PIDs en vivo, <strong>códigos almacenados, pendientes y permanentes</strong> con ficha en español (síntomas, causas probables, qué revisar), cuadro congelado, monitores de emisiones, VIN decodificado, historial y <strong>borrado con verificación posterior</strong>. Se conecta por <strong>Wi-Fi</strong> (socket TCP nativo, atando el proceso a la red del adaptador) o por <strong>Bluetooth clásico SPP</strong> mediante un plugin nativo propio. Incluye un adaptador simulado y un puente para probar toda la app en la PC sin carro.</span></div>
           <div class="re"><b>Resultado</b><span>Diagnóstico completo en español desde el celular, con 78 pruebas automáticas que cubren desde la decodificación de tramas CAN multi-frame hasta el ciclo completo de conexión, lectura y borrado por ambos enlaces.</span></div>
         </div>
-        <div class="tech"><span>JavaScript</span><span>Capacitor</span><span>Android</span><span>Java</span><span>Node.js</span><span>ELM327 / OBD-II</span></div>
+        <div class="tech"><span>Capacitor</span><span>Android</span><span>Node.js</span><span>ELM327 / OBD-II</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
         </div>
       </article>
@@ -570,13 +575,13 @@
         </div>
         <div class="info">
           <h3>Lightshot Desktop</h3>
-          <div class="rol">Captura, anotación y grabación de pantalla para evidencias QA</div>
+          <div class="rol">Captura, anotación y grabación de pantalla para evidencias QA<b class="lenguaje">JavaScript</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Documentar una evidencia de prueba implicaba capturar, abrir un editor, anotar, tapar datos sensibles, guardar y pegar: varios minutos por cada hallazgo.</span></div>
           <div class="so"><b>Solución</b><span>Al abrirla congela la pantalla y muestra una barra de anotación: rectángulo, elipse, flecha, texto editable, resaltado, <strong>numeración de pasos</strong> y <strong>desenfoque</strong> para datos sensibles. Cada cambio se copia al portapapeles; guarda PNG/JPG y graba pantalla a <strong>MKV</strong> (remux con FFmpeg, sin recodificar). Ventana transparente sin marco, IPC aislado.</span></div>
           <div class="re"><b>Resultado</b><span>Evidencia lista para pegar en Jira o en un ticket en segundos, con los datos sensibles ocultos antes de compartir.</span></div>
         </div>
-        <div class="tech"><span>Electron</span><span>JavaScript</span><span>Canvas API</span><span>MediaRecorder</span><span>FFmpeg</span></div>
+        <div class="tech"><span>Electron</span><span>Canvas API</span><span>MediaRecorder</span><span>FFmpeg</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
         </div>
       </article>
@@ -586,13 +591,13 @@
         </div>
         <div class="info">
           <h3>Contabilidad IFTAE</h3>
-          <div class="rol">Sistema contable de escritorio para una institución educativa</div>
+          <div class="rol">Sistema contable de escritorio para una institución educativa<b class="lenguaje">JavaScript</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Una institución educativa llevaba pagos a empleados, ingresos y arqueos en hojas sueltas, sin trazabilidad ni respaldos, en equipos antiguos con Windows 7 y sin internet.</span></div>
           <div class="so"><b>Solución</b><span>Aplicación instalable con base <strong>SQLite local</strong> y <strong>respaldo automático</strong> tras cada movimiento; recibos numerados, anulación con trazabilidad, cierre de mes, bitácora de auditoría y contraseñas con PBKDF2. <strong>Dos compilaciones</strong>: Windows 10/11 (SQLite nativo) y Windows 7 de 32 bits (SQLite en WebAssembly) sobre el mismo archivo de datos. Suite de pruebas automatizadas y manual de usuario ilustrado.</span></div>
           <div class="re"><b>Resultado</b><span>En uso real en el Instituto de Formación Técnica Albert Einstein: sin dependencia de internet, historial auditable y recuperación ante fallos con un clic.</span></div>
         </div>
-        <div class="tech"><span>Electron</span><span>JavaScript</span><span>SQLite</span><span>Node.js</span><span>Chart.js</span></div>
+        <div class="tech"><span>Electron</span><span>SQLite</span><span>Node.js</span><span>Chart.js</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
         </div>
       </article>
@@ -601,7 +606,7 @@
         </div>
         <div class="info">
           <h3>Compresor de PDF</h3>
-          <div class="rol">Herramienta de escritorio</div>
+          <div class="rol">Herramienta de escritorio<b class="lenguaje">JavaScript</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Enviar documentos por correo con límite de tamaño obligaba a subir PDFs a servicios web de terceros o a instalar herramientas complicadas.</span></div>
           <div class="so"><b>Solución</b><span>Utilidad de escritorio sobre <strong>Ghostscript</strong> con perfiles de calidad, DPI configurable y modo de color; todo el procesamiento ocurre en el equipo. Empaquetada con Electron Forge.</span></div>
@@ -617,13 +622,13 @@
         </div>
         <div class="info">
           <h3>Creador de Manuales</h3>
-          <div class="rol">De guion de pruebas Excel a manual de usuario en PDF y Word</div>
+          <div class="rol">De guion de pruebas Excel a manual de usuario en PDF y Word<b class="lenguaje">Python</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Cada vez que se liberaba una funcionalidad había que escribir el manual de usuario desde cero, copiando las capturas y redactando los pasos que ya existían en el guion de pruebas de QA.</span></div>
           <div class="so"><b>Solución</b><span>Servidor Flask local que lee el <strong>guion Excel</strong> (detecta la hoja de casos y la de anexos, extrae las capturas incrustadas del XML del .xlsx), describe cada pantalla con <strong>OCR local (RapidOCR)</strong> o un modelo de visión con Ollama, y reescribe el texto de tono QA a tono de manual ("Ingrese", "Seleccione"). Editor web para revisar cada paso, anotar sobre la captura y reordenar; salida en <strong>PDF (ReportLab)</strong> y <strong>Word</strong> con portada, control de versiones, índice y figuras numeradas. Empaquetado con PyInstaller e Inno Setup.</span></div>
           <div class="re"><b>Resultado</b><span>El manual sale en minutos a partir del guion que QA ya tiene, sin volver a redactar ni recortar capturas, y todo se procesa en el equipo: ninguna pantalla interna sale a internet.</span></div>
         </div>
-        <div class="tech"><span>Python</span><span>Flask</span><span>ReportLab</span><span>python-docx</span><span>RapidOCR</span><span>Ollama</span><span>openpyxl</span></div>
+        <div class="tech"><span>Flask</span><span>ReportLab</span><span>python-docx</span><span>RapidOCR</span><span>Ollama</span><span>openpyxl</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración y código disponibles en entrevista.</span></div>
         </div>
       </article>
@@ -632,13 +637,13 @@
         </div>
         <div class="info">
           <h3>SN4KE Deluxe</h3>
-          <div class="rol">Juego web · React + Canvas</div>
+          <div class="rol">Juego web · React + Canvas<b class="lenguaje">JavaScript</b></div>
           <div class="case">
           <div class="pr"><b>Problema</b><span>Proyecto personal para practicar front puro sin librerías de juego: manejar un bucle de animación, colisiones, estado y entrada táctil desde cero, y publicarlo como sitio estático.</span></div>
           <div class="so"><b>Solución</b><span>Snake estilo cyberpunk en <strong>React + Vite</strong> renderizado en <strong>Canvas</strong> con hooks propios (<code>useGameLoop</code>, <code>useCanvas</code>, <code>useSound</code>): niveles con obstáculos, vidas, récord persistente, seis skins, pausa y sonido. Controles por teclado y por <strong>deslizamiento táctil</strong> para móvil. Build estático listo para Vercel/Netlify.</span></div>
           <div class="re"><b>Resultado</b><span>Un juego fluido a 60 fps con la lógica separada de la presentación: el mismo motor sirve para escritorio y celular.</span></div>
         </div>
-        <div class="tech"><span>React</span><span>Vite</span><span>Canvas API</span><span>JavaScript</span></div>
+        <div class="tech"><span>React</span><span>Vite</span><span>Canvas API</span></div>
         <div class="links"><span class="priv">🔒 Repositorio privado. Demostración disponible en entrevista.</span></div>
         </div>
       </article>
